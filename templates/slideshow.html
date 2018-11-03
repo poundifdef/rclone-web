@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="/static/revealjs/css/reveal.css">
+		<link rel="stylesheet" href="/static/revealjs/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="/static/revealjs/lib/css/zenburn.css">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				{% for file in files %}
+				<section data-autoslide="5000"><img class="stretch" data-src="{{file}}"></section>
+				{% endfor %}
+
+			</div>
+		</div>
+
+		<script src="/static/revealjs/lib/js/head.min.js"></script>
+		<script src="/static/revealjs/js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				controlsTutorial: false,
+				controlsBackArrows: 'visible',
+				slideNumber: true,
+				overview: false,
+				loop: true,
+				viewDistance: 5,
+				slideNumber: 'c/t'
+			});
+		</script>
+	</body>
+</html>

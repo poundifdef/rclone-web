@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+
+<p>
+<a href="{{url_for('home', remote=remote)}}">{{remote}}</a> /
+{% for link, href in path_links %}
+    {% if link %}
+        <a href="{{url_for('home', remote=remote, path=href)}}">{{link}}</a> /
+    {% endif %}
+{% endfor %}
+</p>
+
+<form method="POST" action="{{url_for('slideshow')}}" target="_blank">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <input type="submit" class="btn ben-sm btn-outline-secondary" value="Slideshow">
+            </div>
+        </div>
+  </div>
+
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th class="w-10">&nbsp;</th>
+            <th>Name</th>
+            <th>Size</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for file in file_list %}
+    <tr>
+        <td>
+            <input type="checkbox" name="filename" value="{{request.path}}{{file['name']}}">
+        </td>
+
+        <td>
+            {% if file['is_dir'] %}
+            <i class="fas fa-folder"></i>
+            {% endif %}
+            <a href="{{file['name']}}">{{file['name']}}</a>
+        </td>
+
+        <td>
+            {% if file['is_dir'] %}
+                &nbsp;
+            {% else %}
+                {{file['human_size']}}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+</form>
+
+<ul>
+
+</ul>
+
+{% include 'footer.html' %}
